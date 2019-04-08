@@ -5,7 +5,7 @@
 	margin-left: 18%;
 	font-weight: bold;
 }
-.item-cor, .item-tamanho, .item_name, .item_cor {
+.item-color, .item-size, .item_name, .item_color {
 	text-transform: capitalize;
 }
 
