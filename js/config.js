@@ -5,6 +5,8 @@ $(function() {
 	    // the cart columns documentation
 	    cartColumns: [
 	        { attr: "name" , label: "Name" },
+	        { attr: "color" , label: "Color" },
+	        { attr: "size" , label: "Size" },
 	        { attr: "price" , label: "Price", view: 'currency' },
 	        { view: "decrement" , label: false },
 	        { attr: "quantity" , label: "Qty" },
