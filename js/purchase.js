@@ -22,7 +22,7 @@ function hacerPedido() {
     let inicio = "Hola estoy usando Kiosko EMM.";
 
     for (var key in producto) {
-        productos += " QUIERO COMPRAR: " + producto[key].quantity + " " + producto[key].name + " DE COLOR " + producto[key].color + " EN TALLA " + producto[key].talla + " POR " + producto[key].price + " UNIDAD.";
+        productos += " QUIERO COMPRAR: " + producto[key].quantity + " " + producto[key].name + " DE COLOR " + producto[key].color + " EN TALLA " + producto[key].size + " POR " + producto[key].price + " UNIDAD.";
     }
 
 
