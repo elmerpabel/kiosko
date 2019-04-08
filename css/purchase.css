@@ -1,0 +1,21 @@
+.button-whats {
+	margin-left: 66%;
+}
+.descricao {
+	margin-left: 18%;
+	font-weight: bold;
+}
+.item-cor, .item-tamanho, .item_name, .item_cor {
+	text-transform: capitalize;
+}
+
+
+@media (max-width: 842px) { 
+	.button-whats {
+		margin-left: 13%;
+	}
+	.descricao {
+		margin: 0%;
+		font-weight: bold;
+	}
+}
