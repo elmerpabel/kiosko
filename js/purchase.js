@@ -19,15 +19,15 @@ function hacerPedido() {
 
     let productos = "";
 
-    let inicio = "Hola estoy usando Kiosko EMM.";
+    let inicio = "Hola estoy usando Kiosko EMM, quiero comprar:";
 
     for (var key in producto) {
-        productos += " QUIERO COMPRAR: " + producto[key].quantity + " " + producto[key].name + " DE COLOR " + producto[key].color + " EN TALLA " + producto[key].size + " POR " + producto[key].price + " UNIDAD.";
+        productos += "\n " + producto[key].quantity + " " + producto[key].name + " DE COLOR " + producto[key].color + " EN TALLA " + producto[key].size + " POR " + producto[key].price + " UNIDAD.";
     }
 
 
     let valor = document.querySelector(".simpleCart_grandTotal").innerHTML;
-    let pedido = " Mi pedido total fue: " + valor + ".";
+    let pedido = "\n\nMi pedido total fue por: " + valor + "";
 
     //INSIRA SEU TELEFONE NO FORMATO 55dddNumeroTelefone - EX:5511999999999
     let msg =  "https://api.whatsapp.com/send?phone=51949755480&text=" + encodeURIComponent(inicio + productos + " " + pedido);
