@@ -26,7 +26,7 @@ function hacerPedido() {
     }
 
 
-    let valor = document.querySelector(".simpleCart_grandTotal").innerHTML;
+    //let valor = document.querySelector(".simpleCart_grandTotal").innerHTML;
     let valor = simpleCart.grandTotal();
     let pedido = "\n\nMi pedido total fue por: " + valor + "";
 
