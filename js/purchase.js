@@ -27,6 +27,7 @@ function hacerPedido() {
 
 
     let valor = document.querySelector(".simpleCart_grandTotal").innerHTML;
+    let valor = simpleCart.grandTotal();
     let pedido = "\n\nMi pedido total fue por: " + valor + "";
 
     //INSIRA SEU TELEFONE NO FORMATO 55dddNumeroTelefone - EX:5511999999999
