@@ -18,7 +18,7 @@ function hacerPedido() {
     // }
     var producto = [];
     simpleCart.each(function( item , x ){
-    producto.push({name: item.name(), color: item.color(), size: item.size(), quantity: item.quantity(), price: item.price()} );
+    producto.push({name: item.get('name'), color: item.get('color'), size: item.get('size'), quantity: item.get('quantity'), price: item.get('price')} );
     });
 
     let productos = "";
