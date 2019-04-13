@@ -4,18 +4,22 @@ function hacerPedido() {
     let lengthName = document.querySelectorAll(".item-name").length;
     let lengthPrice = document.querySelectorAll(".item-price").length;
 
+    // var producto = [];
+
+
+    // for (let i = 1; i <= lengthPrice - 1; i++) {
+    //     let name = document.querySelectorAll(".item-name")[i].innerHTML;
+    //     let price = document.querySelectorAll(".item-price")[i].innerHTML;
+    //     let quantity = document.querySelectorAll(".item-quantity")[i].innerHTML;
+    //     let color = document.querySelectorAll(".item-color")[i].innerHTML;
+    //     let size = document.querySelectorAll(".item-size")[i].innerHTML;
+
+    //     producto.push({name: name, color: color, size: size, quantity: quantity, price: price});
+    // }
     var producto = [];
-
-
-    for (let i = 1; i <= lengthPrice - 1; i++) {
-        let name = document.querySelectorAll(".item-name")[i].innerHTML;
-        let price = document.querySelectorAll(".item-price")[i].innerHTML;
-        let quantity = document.querySelectorAll(".item-quantity")[i].innerHTML;
-        let color = document.querySelectorAll(".item-color")[i].innerHTML;
-        let size = document.querySelectorAll(".item-size")[i].innerHTML;
-
-        producto.push({name: name, color: color, size: size, quantity: quantity, price: price});
-    }
+    simpleCart.each(function( item , x ){
+    producto.push({name: item.name, color: item.color, size: item.size, quantity: item.quantity, price: item.price} );
+    });
 
     let productos = "";
 
