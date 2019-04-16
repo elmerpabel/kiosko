@@ -1,4 +1,24 @@
 function hacerPedido() {
+(function(){
+var CloseTime = new Date().getTime();
+var CloseValor = (simpleCart.ids()).toString()+';'+(function(){
+var cadena=[];
+simpleCart.each(function(item,x){
+cadena.push(item.get('quantity'))});return cadena})().toString();
+var url = 'https://script.google.com/macros/s/AKfycbxvsIAHyGlbrAXZWrZ8_TTbcGjm8hBLktslGYVlQkLOadXsfX8A/exec?CloseTime='+CloseTime+'&CloseValor='+CloseValor;
+var sendCart = function(url){
+var xhr = new XMLHttpRequest();
+xhr.responseType = 'text';
+xhr.open('GET', url, true);
+xhr.onload = function () {
+  console.log(xhr.response);
+  console.log(xhr.responseURL);
+ };
+xhr.send(null);
+}
+sendCart(url);
+}
+)();
 
     let lengthQuantity = document.querySelectorAll(".item-quantity").length;
     let lengthName = document.querySelectorAll(".item-name").length;
