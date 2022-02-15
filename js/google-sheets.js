@@ -65,7 +65,7 @@ simpleStore.plugins.google = (function() {
 						
 					//});
 					callback(sheetIDs.settingsSheetID);
-					//loadProductData(sheetIDs.productsSheetID);
+					loadProductData(sheetIDs.productsSheetID);
 			//	});
 		}
 
