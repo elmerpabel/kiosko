@@ -107,7 +107,7 @@ simpleStore.plugins.google = (function() {
   						const table = obj.table;
   						const header = table.cols.map(({label}) => label);
   						const rows = table.rows.map(({c}) => c.map(e => e ? (e.v || "") : "")); // Modified from const rows = table.rows.map(({c}) => c.map(({v}) => v));
-					}
+
 					var s = simpleStore.settings;
 
 					if(table) {
@@ -123,6 +123,7 @@ simpleStore.plugins.google = (function() {
 						}
 
 						simpleStore.setLayout(s);
+					}
 					}
 				});
 		}
