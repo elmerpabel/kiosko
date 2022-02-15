@@ -18,7 +18,8 @@ simpleStore.plugins.google = (function() {
 
 		var hostname = "https://spreadsheets.google.com";
 		var format = "json";
-		var spreadsheetURL = hostname + "/feeds/worksheets/" + s.spreadsheetID + "/public/full?alt=" + format;
+//		var spreadsheetURL = hostname + "/feeds/worksheets/" + s.spreadsheetID + "/public/full?alt=" + format;
+		var spreadsheetURL = "https://docs.google.com/spreadsheets/d/1E9eQBE4c8vGbT12Qg9AhAA2o4JcS4RjSGVWqZ5y6zWk/gviz/tq?tqx=out:json&gid=1840056159";
 		var mainsheetURL = hostname + "/feeds/list/" + s.spreadsheetID + "/od6/public/values?alt=" + format;
 		var settingsSheetName = "Settings";
 		var productsSheetName = "Products";
