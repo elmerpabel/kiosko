@@ -25,7 +25,7 @@ simpleStore.plugins.google = (function() {
 		var productsSheetName = "Products";
 		var sheetIDs = {};
 
-		function getSheetInfo (url, callback) {
+/*		function getSheetInfo (url, callback) {
 			// Need to do this because od6 is default Google Sheet ID
 			$.getJSON(url)
 				.done(function(data) {
@@ -48,6 +48,25 @@ simpleStore.plugins.google = (function() {
 					callback(sheetIDs.settingsSheetID);
 					loadProductData(sheetIDs.productsSheetID);
 				});
+		}
+*/
+		function getSheetInfo (url, callback) {
+			// Need to do this because od6 is default Google Sheet ID
+			//$.getJSON(url)
+			//	.done(function(data) {
+
+					//var sheets = ["Settings","Products"];
+
+					//$(sheets).each(function(i, sheet) {
+
+							sheetIDs.settingsSheetID = "Settings";
+
+							sheetIDs.productsSheetID  = "Products";
+						
+					//});
+					callback(sheetIDs.settingsSheetID);
+					//loadProductData(sheetIDs.productsSheetID);
+			//	});
 		}
 
 /*		function loadSiteSettings (id, callback) {
@@ -78,9 +97,9 @@ simpleStore.plugins.google = (function() {
 */
 		function loadSiteSettings (id, callback) {
 
-			var settingsSheetURL = hostname + "/feeds/list/" + s.spreadsheetID + "/" + id + "/public/values?alt=" + format;
-
-			$.getJSON("https://docs.google.com/spreadsheets/d/1E9eQBE4c8vGbT12Qg9AhAA2o4JcS4RjSGVWqZ5y6zWk/gviz/tq?tqx=out:json&gid=659966060")
+			//var settingsSheetURL = hostname + "/feeds/list/" + s.spreadsheetID + "/" + id + "/public/values?alt=" + format;
+			var settingsSheetURL = "https://docs.google.com/spreadsheets/d/1E9eQBE4c8vGbT12Qg9AhAA2o4JcS4RjSGVWqZ5y6zWk/gviz/tq?tqx=out:json&gid=659966060";
+			$.getJSON(settingsSheetURL)
 				.done(function(data) {
 					const r = data.responseText.match(/google\.visualization\.Query\.setResponse\(([\s\S\w]+)\)/);
   					if (r && r.length == 2) {
@@ -88,7 +107,6 @@ simpleStore.plugins.google = (function() {
   						const table = obj.table;
   						const header = table.cols.map(({label}) => label);
   						const rows = table.rows.map(({c}) => c.map(e => e ? (e.v || "") : "")); // Modified from const rows = table.rows.map(({c}) => c.map(({v}) => v));
-					var data = data.feed.entry;
 					}
 					var s = simpleStore.settings;
 
@@ -111,8 +129,8 @@ simpleStore.plugins.google = (function() {
 		
 		function loadProductData (id) {
 
-			var productsSheetURL = hostname + "/feeds/list/" + s.spreadsheetID + "/" + id + "/public/values?alt=" + format;
-
+//			var productsSheetURL = hostname + "/feeds/list/" + s.spreadsheetID + "/" + id + "/public/values?alt=" + format;
+			var productsSheetURL = "https://docs.google.com/spreadsheets/d/1E9eQBE4c8vGbT12Qg9AhAA2o4JcS4RjSGVWqZ5y6zWk/gviz/tq?tqx=out:json&gid=1840056159";
 			// Get Main Sheet Products data
 			$.getJSON(productsSheetURL)
 				.done(function(data) {
