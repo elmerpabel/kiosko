@@ -49,7 +49,7 @@ simpleStore.plugins.google = (function() {
 				});
 		}
 
-		function loadSiteSettings (id, callback) {
+/*		function loadSiteSettings (id, callback) {
 
 			var settingsSheetURL = hostname + "/feeds/list/" + s.spreadsheetID + "/" + id + "/public/values?alt=" + format;
 
@@ -74,7 +74,40 @@ simpleStore.plugins.google = (function() {
 					}
 				});
 		}
+*/
+		function loadSiteSettings (id, callback) {
 
+			var settingsSheetURL = hostname + "/feeds/list/" + s.spreadsheetID + "/" + id + "/public/values?alt=" + format;
+
+			$.getJSON("https://docs.google.com/spreadsheets/d/1E9eQBE4c8vGbT12Qg9AhAA2o4JcS4RjSGVWqZ5y6zWk/gviz/tq?tqx=out:json&gid=659966060")
+				.done(function(data) {
+					const r = data.responseText.match(/google\.visualization\.Query\.setResponse\(([\s\S\w]+)\)/);
+  					if (r && r.length == 2) {
+  						const obj = JSON.parse(r[1]);
+  						const table = obj.table;
+  						const header = table.cols.map(({label}) => label);
+  						const rows = table.rows.map(({c}) => c.map(e => e ? (e.v || "") : "")); // Modified from const rows = table.rows.map(({c}) => c.map(({v}) => v));
+					var data = data.feed.entry;
+					}
+					var s = simpleStore.settings;
+
+					if(table) {
+
+						var siteName = table.rows[0].c[0].v;//rows[0][0];
+						var columns = table.rows[0].c[1].v;//rows[0][1];
+
+						if (siteName) {
+							s.brand = siteName;
+						}
+						if (columns) {
+							s.numColumns = columns;
+						}
+
+						simpleStore.setLayout(s);
+					}
+				});
+		}
+		
 		function loadProductData (id) {
 
 			var productsSheetURL = hostname + "/feeds/list/" + s.spreadsheetID + "/" + id + "/public/values?alt=" + format;
