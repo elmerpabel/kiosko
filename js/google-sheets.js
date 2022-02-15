@@ -128,7 +128,7 @@ simpleStore.plugins.google = (function() {
 				});
 		}
 		
-		function loadProductData (id) {
+/*		function loadProductData (id) {
 
 //			var productsSheetURL = hostname + "/feeds/list/" + s.spreadsheetID + "/" + id + "/public/values?alt=" + format;
 			var productsSheetURL = "https://docs.google.com/spreadsheets/d/1E9eQBE4c8vGbT12Qg9AhAA2o4JcS4RjSGVWqZ5y6zWk/gviz/tq?tqx=out:json&gid=1840056159";
@@ -185,7 +185,70 @@ simpleStore.plugins.google = (function() {
 					setTimeout(function(){ simpleStore.renderError(s, errorMsg); }, 1000);
 				});
 		}
+*/
+		function loadProductData (id) {
 
+//			var productsSheetURL = hostname + "/feeds/list/" + s.spreadsheetID + "/" + id + "/public/values?alt=" + format;
+			var productsSheetURL = "https://docs.google.com/spreadsheets/d/1E9eQBE4c8vGbT12Qg9AhAA2o4JcS4RjSGVWqZ5y6zWk/gviz/tq?tqx=out:json&gid=1840056159";
+			// Get Main Sheet Products data
+			$.getJSON(productsSheetURL)
+				.done(function(data) {
+					const r = data.responseText.match(/google\.visualization\.Query\.setResponse\(([\s\S\w]+)\)/);
+  					if (r && r.length == 2) {
+  						const obj = JSON.parse(r[1]);
+  						const table = obj.table;
+  						const header = table.cols.map(({label}) => label);
+  						const rows = table.rows.map(({c}) => c.map(e => e ? (e.v || "") : ""));
+					var productsData = rows;
+
+					// Build products rows[i][0] Name value , rows[i][1] Price value, rows[i][2] options  
+					$(productsData).each(function(i) {
+
+						var options = this[2];
+						var setOptions = function(options) {
+							var productOptions = [];
+							if(options) {
+								var opts = options.split(";").filter(function(el) {return el.length != 0});
+								$(opts).each(function(i, option) {
+									var opt = option.trim().split(":"),
+										key = opt[0],
+										val = opt[1],
+										optObj = {};
+
+									optObj[key] = val;
+									productOptions.push(optObj);
+								});
+							}
+							return productOptions;
+						};
+
+						// Get product values
+						var product = {
+							name : this[0],
+							price : this[1],
+							description : this[3],
+							options : setOptions(options),
+							image : this[4]
+						};
+
+						if (verify) {
+							verifyProducts.push(product);
+						} else {
+							storeProducts.push(product);
+						}
+					});
+				}
+					callback();
+				})
+				.fail(function(data){
+					if (verify) {
+						var errorMsg = 'There was an error validating your cart.';
+					} else {
+						var errorMsg = 'Error loading spreadsheet data. Make sure the spreadsheet ID is correct.';
+					}
+					setTimeout(function(){ simpleStore.renderError(s, errorMsg); }, 1000);
+				});
+		}
 		// Get Sheet data
 		getSheetInfo(spreadsheetURL, loadSiteSettings);
 
