@@ -99,9 +99,9 @@ simpleStore.plugins.google = (function() {
 
 			//var settingsSheetURL = hostname + "/feeds/list/" + s.spreadsheetID + "/" + id + "/public/values?alt=" + format;
 			var settingsSheetURL = "https://docs.google.com/spreadsheets/d/1E9eQBE4c8vGbT12Qg9AhAA2o4JcS4RjSGVWqZ5y6zWk/gviz/tq?tqx=out:json&gid=659966060";
-			$.getJSON(settingsSheetURL)
+			$.get(settingsSheetURL)
 				.done(function(data) {
-					const r = data.responseText.match(/google\.visualization\.Query\.setResponse\(([\s\S\w]+)\)/);
+					const r = data.match(/google\.visualization\.Query\.setResponse\(([\s\S\w]+)\)/);
   					if (r && r.length == 2) {
   						const obj = JSON.parse(r[1]);
   						const table = obj.table;
@@ -191,9 +191,9 @@ simpleStore.plugins.google = (function() {
 //			var productsSheetURL = hostname + "/feeds/list/" + s.spreadsheetID + "/" + id + "/public/values?alt=" + format;
 			var productsSheetURL = "https://docs.google.com/spreadsheets/d/1E9eQBE4c8vGbT12Qg9AhAA2o4JcS4RjSGVWqZ5y6zWk/gviz/tq?tqx=out:json&gid=1840056159";
 			// Get Main Sheet Products data
-			$.getJSON(productsSheetURL)
+			$.get(productsSheetURL)
 				.done(function(data) {
-					const r = data.responseText.match(/google\.visualization\.Query\.setResponse\(([\s\S\w]+)\)/);
+					const r = data.match(/google\.visualization\.Query\.setResponse\(([\s\S\w]+)\)/);
   					if (r && r.length == 2) {
   						const obj = JSON.parse(r[1]);
   						const table = obj.table;
